@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.mapper.OrdersMapper" >
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Orders">
+        insert into orders(o_num,o_date,o_status,de_id,o_total,od_count)
+         values(#{oNum},#{oDate},#{oStatus},#{deId},#{oTotal},#{odCount});
+    </insert>
+    
+    <select id="selectAll" resultType="Orders">
+        select id,o_num,o_date,od_count,de_id,o_total,o_status from orders
+    </select>
+    <select id="selectToItem" resultType="java.util.Map">
+        select o_num,o_date,de_id,o_total from orders where id = #{id}
+    </select>
+    <select id="selectAllSearch" resultType="Orders">
+        select id,o_num,o_date,od_count,de_id,o_total,o_status from orders
+        <where>
+            <if test="oNum != null">
+                o_num like concat('%',#{oNum},'%')
+            </if>
+            <if test="sDate != null ">
+                and o_date between #{sDate} and #{eDate}
+            </if>
+        </where>
+        order by  o_date  desc
+    </select>
+    <select id="selectOrdersByDeid" resultType="Orders">
+        select id,o_num,o_date,od_count,de_id,o_total,o_status from orders
+        where de_id = #{id} order by o_date desc limit 0,1
+    </select>
+    <select id="selectOrdesCount" resultType="java.lang.String">
+        select count(1) from orders
+    </select>
+
+    <select id="selectOrdersToatal" resultType="java.lang.String">
+        select SUM(o_total) from orders
+    </select>
+
+    <update id="updateOrdersStatus" >
+        update orders set o_status="2" where id=#{_parament}
+    </update>
+</mapper>

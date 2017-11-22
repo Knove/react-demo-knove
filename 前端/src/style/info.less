@@ -1,0 +1,196 @@
+.clearFix{
+  display: block;
+  content: "";
+  clear: both;
+}
+.infoTab{
+    width: 48%;
+    height: 50px;
+    background: rgba(215, 215, 215, 1);
+    display: inline-block;
+    margin: 15px 1%;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    span{
+        line-height: 50px;
+        font-size: 16px;
+    }
+}
+.infoTab:hover{
+  border: 1px solid rgba(25, 158, 216, 1);
+  margin:14px 1%;
+}
+.infoActive{
+    color: aliceblue;
+    background: rgba(25, 158, 216, 1) !important;
+}
+.funcTitle{
+    display: flex;  //div进行弹性布局，CSS3用法
+   line-height: 25px;
+    white-space: nowrap;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 30px;
+    font-size: 13px;
+    .normalInput{
+      margin-right: 50px;
+
+    }
+    .smallInput{
+      margin-right: 15px;
+    }
+
+    div{
+        display: -webkit-flex; /* Safari */
+        display: flex;
+
+    }
+    .datePicker{
+        margin: 0 10px;
+    }
+    button{
+      margin-left: 20px;
+    }
+}
+.tableMain{
+    margin: 20px 6% 0 6%;
+    background: white;
+     span{
+         display: inline-block;
+         font-size: 13px;
+         line-height: 40px;
+
+         .tableMoney{
+             color: #339900;
+             font-weight: 700;
+         }
+     }
+    .tableDate{
+        margin-left: 20px;
+    }
+    .tableRight{
+        float: right;
+        margin-right: 10px;
+        line-height: 20px;
+        font-size: 12px;
+        .redLine,.yellowLine{
+          width: 50px;
+          height: 10px;
+          background-color: #fabeb9;
+          border: 1px solid #000;
+          margin-right: 2px;
+        }
+      .yellowLine{
+        background-color: #ffe9a7;
+      }
+    }
+    table{
+        text-align: center  !important;
+    }
+    th{
+        background: rgb(153,153,153) !important;
+        color:white !important;
+        font-size: 13px !important;
+        border: 0.5px solid white;
+        padding: 4px !important;
+        text-align: center  !important;
+    }
+    tr:hover td{
+        background: rgb(25,158,216) !important;
+        color:white !important;
+      a{
+        color:white !important;
+    }
+    }
+}
+.listInfo{
+  font-size:13px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 80%;
+
+}
+.doLine{
+  height:1px;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 20px;
+  border:none;
+  border-top:1px dashed black;
+}
+.ant-row{
+  display: flex;
+  margin-bottom: 8px;
+  margin-left: 50px;
+  .ant-input{
+    width: 150%;
+    margin-left: 12px;
+  }
+  .ant-input:nth-child(4){
+    margin-left: 0;
+  }
+  textarea.ant-input{
+    width: 260px;
+    margin-left: 36px;
+  }
+}
+.ant-form-explain{
+  margin-left: 16px;
+}
+.ant-row:nth-child(4){
+  .ant-input{
+    margin-left: 0;
+    margin-right: 12px;
+  }
+  .ant-form-explain{
+    margin-left: 3px;
+  }
+}
+.ant-row:nth-child(7),
+.ant-row:nth-child(6){
+  margin-left: 61px;
+}
+.editInfo{
+  line-height: 30px;
+  margin-left: 80px;
+  div{
+    margin-bottom: 10px;
+  }
+  span{
+    display: inline-block;
+    height: 50px;
+    float: left;
+  }
+  input{
+    width: 220px;
+    height: 30px;
+    padding: 0 3px;
+    text-decoration: none;
+    margin-left: 5px;
+  }
+  textarea{
+    width: 220px;
+    height: 60px;
+    line-height: 20px;
+    padding: 0 3px;
+    margin-left: 5px;
+  }
+}
+.bgRed{
+  background-color: #fabeb9;
+/*  color: #ffffff;
+  a {
+    color: #ffffff !important;
+  }*/
+}
+.bgYellow{
+  background-color:#ffe9a7;
+/*  color: #ffffff;
+  a {
+    color: #ffffff !important;
+  }*/
+}

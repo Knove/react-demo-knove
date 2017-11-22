@@ -1,0 +1,27 @@
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="http://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+  <script language="javascript" type="text/javascript">
+
+    function init() {
+        send_echo();
+    }
+    function send_echo() {
+      let wsUri = "ws://30.87.246.189:8080/websocket";
+      let echo_websocket = new WebSocket(wsUri);
+      echo_websocket.onmessage = function (evt) {
+        writeToScreen("Received message: " + evt.data);
+      };
+    }
+    function writeToScreen(message) {
+      let pre = document.createElement("p");
+      pre.innerHTML = message;
+      output.appendChild(pre);
+    }
+    window.addEventListener("load", init, false);
+  </script>
+
+
+
+
+<div id="output"></div>

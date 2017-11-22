@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.mapper.OrderItemMapper" >
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
+       insert into order_item(o_id,d_id,oi_count,oi_status) values
+       <foreach collection="list" item="item" separator="," index="index" >  
+       (#{item.oId},#{item.dId},#{item.oiCount},#{item.oiStatus})
+       </foreach>
+    </insert>
+    <select id="selectByOid" parameterType="java.lang.String" resultType="OrderItem">
+       select id,o_id,d_id,oi_count,oi_status from order_item where o_id = #{id};
+    </select>
+    <update id="updateDishStatus">
+        update order_item set oi_status="1" where id=#{_parament};
+    </update>
+    
+    <select id="selectOrderItemByOrderInemId" resultType="OrderItem">
+     select id,o_id,d_id,oi_count,oi_status from order_item where id=#{_parament}
+    </select>
+</mapper>

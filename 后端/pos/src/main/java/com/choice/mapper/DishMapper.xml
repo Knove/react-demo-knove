@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.mapper.DishMapper">
+    <sql id="Base_Column_List" >
+        id, dc_id, d_name, d_cn, d_date, d_material, d_remark, d_price, d_count, d_status
+    </sql>
+
+    <select id="selectDishById" resultType="Dish">
+        select
+        <include refid="Base_Column_List" />
+        from dish
+        where id = #{Id}
+        and d_status = '1'
+    </select>
+    <select id="selectDishByCatelog" resultType="Dish" parameterType="map">
+        select
+        <include refid="Base_Column_List" />
+        from dish
+        where dc_id = #{dcId}
+        and d_status = '1'
+    </select>
+    <insert id="insertDish"  parameterType="Dish">
+        insert into dish
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="dcId != null" >
+                dc_id,
+            </if>
+            <if test="dName != null" >
+                d_name,
+            </if>
+            <if test="dCn != null" >
+                d_cn,
+            </if>
+            <if test="dDate != null" >
+                d_date,
+            </if>
+            <if test="dMaterial != null" >
+                d_material,
+            </if>
+            <if test="dRemark != null" >
+                d_remark,
+            </if>
+            <if test="dPrice != null" >
+                d_price,
+            </if>
+            <if test="dCount != null" >
+                d_count,
+            </if>
+            d_status,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="dcId != null" >
+                #{dcId},
+            </if>
+            <if test="dName != null" >
+                #{dName},
+            </if>
+            <if test="dCn != null" >
+                #{dCn},
+            </if>
+            <if test="dDate != null" >
+                #{dDate},
+            </if>
+            <if test="dMaterial != null" >
+                #{dMaterial},
+            </if>
+            <if test="dRemark != null" >
+                #{dRemark},
+            </if>
+            <if test="dPrice != null" >
+                #{dPrice},
+            </if>
+            <if test="dCount != null" >
+                #{dCount},
+            </if>
+            1
+        </trim>
+    </insert>
+    <update id="updateDish" parameterType="Dish">
+        update dish
+        <set >
+            <if test="dcId != null" >
+                dc_id = #{dcId},
+            </if>
+            <if test="dName != null" >
+                d_name = #{dName},
+            </if>
+            <if test="dCn != null" >
+                d_cn = #{dCn},
+            </if>
+            <if test="dDate != null" >
+                d_date = #{dDate},
+            </if>
+            <if test="dMaterial != null" >
+                d_material = #{dMaterial},
+            </if>
+            <if test="dRemark != null" >
+                d_remark = #{dRemark},
+            </if>
+            <if test="dPrice != null" >
+                d_price = #{dPrice},
+            </if>
+            <if test="dCount != null" >
+                d_count = #{dCount},
+            </if>
+            <if test="dStatus != null" >
+                d_status = #{dStatus},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="deleteDishById" parameterType="map">
+        update dish set d_status = '0'
+        where id = #{id}
+    </update>
+    <select id="selectDishByCn" resultType="Dish" parameterType="map">
+        select  <include refid="Base_Column_List" />
+        from dish
+        where d_status = '1'
+        and d_cn like concat('%',#{_parameter},'%')
+        ORDER by d_date desc
+    </select>
+    <select id="selectDish" resultType="Dish">
+        select  <include refid="Base_Column_List" />
+        from dish
+        where d_status = '1'
+        ORDER by d_date desc
+    </select>
+    <select id="selectDishByDNameAndDDate" resultType="Dish">
+        select  <include refid="Base_Column_List" />
+        from dish
+        where d_status = '1'
+        <if test="dName != null">
+            AND  d_name like concat('%',#{dName},'%')
+        </if>
+        <if test="sdDate != null">
+            and d_date between #{sdDate} and #{edDate}
+        </if>
+        ORDER by d_date desc
+    </select>
+    <select id="selectEmptyDish" resultType="Dish">
+        select id,d_name from dish where d_count = '0' and d_status = '1';
+    </select>
+    <select id="selectNotEnoughCount" parameterType="java.lang.String"
+            resultType="java.lang.Integer">
+        <![CDATA[
+        select count(1) as sum from dish where d_count < #{num}
+        ]]>
+        and d_status = '1';
+    </select>
+    <select id="selectEmptyCount" resultType="java.lang.Integer">
+        select count(1) as sum from dish where d_count = '0' and d_status = '1';
+    </select>
+    <select id="selectDishCount" resultType="java.lang.Integer">
+        select count(1) from dish where d_status = '1';
+    </select>
+    <select id="selectDishByIdCount" resultType="Dish">
+        select d_name,d_count from dish where id = #{_parament};
+    </select>
+</mapper>
